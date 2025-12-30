@@ -5,12 +5,12 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class Api {
-  private apiUrl = 'http://localhost:3000/api';
+  private apiUrl = 'http://localhost:3000/api/';
 
   constructor(private http: HttpClient) {}
 
   getSpells(query: String): any {
-    return this.http.get('/' + this.apiUrl + query);
+    return this.http.get(this.apiUrl + query);
   }
 
   getAllSpells(): any {

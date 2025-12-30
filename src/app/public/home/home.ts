@@ -8,4 +8,11 @@ import { SpellCard } from '../../shared/components/spell-card/spell-card';
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-export class Home {}
+export class Home {
+  spells: any[] = [];
+
+  updateSpells(updatedArray: Array<any>) {
+    this.spells = updatedArray;
+    console.log(this.spells);
+  }
+}

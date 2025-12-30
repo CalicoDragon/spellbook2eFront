@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Api } from '../../services/api';
 
 @Component({
@@ -8,6 +8,8 @@ import { Api } from '../../services/api';
   styleUrl: './navbar.css',
 })
 export class Navbar {
+  @Output() searchEvent = new EventEmitter<Array<any>>();
+
   spells: any[] = [];
   isFocus: boolean = false;
 
@@ -22,16 +24,14 @@ export class Navbar {
   getSpell(query: String): void {
     this.apiService.getSpells(query).subscribe((data: any) => {
       this.spells = data;
-      console.log(this.spells);
+      this.searchEvent.emit(this.spells);
     });
   }
 
   getAllSpells(): void {
-    console.log('Getting all the spells...');
-
     this.apiService.getAllSpells().subscribe((data: any) => {
       this.spells = data;
-      console.log(this.spells);
+      this.searchEvent.emit(this.spells);
     });
   }
 }
