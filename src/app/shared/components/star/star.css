@@ -1,0 +1,7 @@
+.star-filled {
+  fill: var(--color-title-text);
+}
+
+.star-blank {
+  fill: var(--color-blank-star);
+}

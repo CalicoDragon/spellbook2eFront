@@ -1,4 +1,6 @@
 <app-navbar (searchEvent)="updateSpells($event)" />
-<div class="flex flex-wrap gap-8 justify-center">
-  @for (spell of spells; track $index) {<app-spell-card [name]="spell.name" />}
+<div class="flex flex-wrap gap-8 justify-center mt-4">
+  @for (spell of spells; track $index) {
+    <app-spell-card [spell]="spell" />
+  }
 </div>

@@ -4,6 +4,15 @@
 
 @theme {
   --font-nunito: 'Nunito Sans', sans-serif;
+  --color-background: #f4eee0;
+  --color-foreground: #ece2c6;
+  --color-title: #5d0000;
+  --color-title-text: #cbc18f;
+  --color-blank-star: #360004;
+}
+
+html {
+  background-color: var(--color-background);
 }
 
 * {
