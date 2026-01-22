@@ -1,7 +1,7 @@
 <app-navbar (searchEvent)="updateSpells($event)" />
 @if (spells.length != 0) {
   <div class="flex flex-wrap gap-8 justify-center mt-4">
-    @for (spell of spells; track $index) {
+    @for (spell of spells; track spell) {
       <app-spell-card [spell]="spell" />
     }
   </div>

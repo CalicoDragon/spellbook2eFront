@@ -1,46 +1,38 @@
-import { Component, Input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { Trait } from '../trait/trait';
 import { Star } from '../star/star';
 import { PrepareButton } from '../prepare-button/prepare-button';
 import { FavButton } from '../fav-button/fav-button';
 import { PersonalSpellData } from '../../services/personal-spell-data';
-import { PersonalSpellDataModel } from '../../models/personal-spell-data-model';
+import { DescriptionArea } from '../description-area/description-area';
 
 @Component({
   selector: 'app-spell-card',
-  imports: [Trait, Star, PrepareButton, FavButton],
+  imports: [Trait, Star, PrepareButton, FavButton, DescriptionArea],
   templateUrl: './spell-card.html',
   styleUrl: './spell-card.css',
 })
 export class SpellCard {
-  @Input() spell: any = '';
+  spell = input.required<any>();
+  spellPersonalData = computed(() => this.dataService.getDataOfSpell(this.spell()));
 
   constructor(private dataService: PersonalSpellData) {}
 
   stars = [1, 2, 3, 4, 5];
-  rating = 1;
-  hover_state = 0;
 
   saveData() {
-    const mData: PersonalSpellDataModel = {
-      name: this.spell.name,
-      rating: this.rating,
-      description: '',
-      favorite: false,
-      prepared: false,
-    };
+    console.log(`Saving data: ${this.spellPersonalData}`);
 
-    this.dataService.saveSpellData(mData);
+    this.dataService.saveSpellData(this.spellPersonalData());
   }
 
-  onEnterEvent(starId: number) {
-    this.hover_state = starId;
+  onStarClickEvent(starId: number) {
+    this.spellPersonalData().rating = starId;
+    this.saveData();
   }
-  onLeaveEvent() {
-    this.hover_state = 0;
-  }
-  onClickEvent(starId: number) {
-    this.rating = starId;
+
+  onDescChangedEvent(desc: string) {
+    this.spellPersonalData().description = desc;
     this.saveData();
   }
 }

@@ -3,21 +3,19 @@
     <h1 class="font-nunito font-extrabold text-[1.2rem] capitalize pl-2">
       <a
         href="https://2e.aonprd.com/Search.aspx?q=name%3A%22{{
-          spell.name
+          spell().name
         }}%22+type%3Aspell&type=eqs&display=short"
         target="_blank"
-        >{{ spell.name }}</a
+        >{{ spell().name }}</a
       >
     </h1>
 
     <p class="text-right flex self-center">
       @for (star of stars; track $index) {
         <app-star
-          (starEnter)="onEnterEvent($event)"
-          (starLeave)="onLeaveEvent()"
-          (starClicked)="onClickEvent($event)"
+          (starClicked)="onStarClickEvent($event)"
           [starId]="star"
-          [rating]="rating"
+          [rating]="spellPersonalData().rating"
         />
       }
     </p>
@@ -25,16 +23,18 @@
 
   <div class="flex flex-wrap mt-1 mr-1 ml-1">
     <div class="bg-amber-100 w-0.5"></div>
-    @for (trait of spell.system.traits.value; track $index) {
+    @for (trait of spell().system.traits.value; track $index) {
       <app-trait [trait]="trait" />
     }
     <div class="bg-amber-100 w-0.5"></div>
   </div>
 
-  <textarea
-    placeholder="Your own description here"
-    class="h-full text-neutral-700 m-1 p-1 resize-none"
-  ></textarea>
+  <div class="h-full">
+    <app-description-area
+      (descriptionChanged)="onDescChangedEvent($event)"
+      [description]="spellPersonalData().description"
+    />
+  </div>
 
   <div class="ml-auto flex m-2 mr-3">
     <app-prepare-button />

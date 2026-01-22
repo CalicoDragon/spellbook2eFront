@@ -19,11 +19,12 @@ export class PersonalSpellData {
 
   saveSpellData(data: PersonalSpellDataModel) {
     const parsedData: PersonalSpellDataModel[] = this.getAllSpellData();
-    console.log(parsedData);
+
+    console.log('new data entry: ');
+    console.log(data);
 
     // Check if this spell already has personal data
     const dataIndex = parsedData.findIndex((item) => item.name === data.name);
-    console.log(dataIndex);
 
     if (dataIndex != -1) {
       // If it exists, we update
@@ -34,5 +35,24 @@ export class PersonalSpellData {
     }
 
     localStorage.setItem(this._KEY, JSON.stringify(parsedData));
+  }
+
+  getDataOfSpell(spell: any) {
+    const parsedData: PersonalSpellDataModel[] = this.getAllSpellData();
+
+    let data = parsedData.find((item) => item.name === spell.name);
+
+    // If no data found, return generic
+    if (data == undefined) {
+      data = {
+        name: spell.name,
+        rating: 1,
+        description: '',
+        favorite: false,
+        prepared: false,
+      };
+    }
+
+    return data;
   }
 }
