@@ -37,7 +37,7 @@ export class PersonalSpellData {
     localStorage.setItem(this._KEY, JSON.stringify(parsedData));
   }
 
-  getDataOfSpell(spell: any) {
+  getDataOfSpell(spell: any): PersonalSpellDataModel {
     const parsedData: PersonalSpellDataModel[] = this.getAllSpellData();
 
     let data = parsedData.find((item) => item.name === spell.name);

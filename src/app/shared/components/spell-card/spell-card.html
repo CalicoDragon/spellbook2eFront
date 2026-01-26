@@ -37,7 +37,10 @@
   </div>
 
   <div class="ml-auto flex m-2 mr-3">
-    <app-prepare-button />
-    <app-fav-button />
+    <app-prepare-button
+      (prepClicked)="onPrepClickEvent()"
+      [isPrepared]="spellPersonalData().prepared"
+    />
+    <app-fav-button (favClicked)="onFavClickEvent()" [isFav]="spellPersonalData().favorite" />
   </div>
 </div>

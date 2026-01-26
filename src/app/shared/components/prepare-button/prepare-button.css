@@ -1,0 +1,7 @@
+.prep-filled {
+  fill: var(--color-amber-900);
+}
+
+.prep-blank {
+  fill: var(--color-blank-favprep);
+}

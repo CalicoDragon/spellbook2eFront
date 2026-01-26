@@ -1,0 +1,7 @@
+.fav-filled {
+  fill: var(--color-amber-900);
+}
+
+.fav-blank {
+  fill: var(--color-blank-favprep);
+}

@@ -35,4 +35,14 @@ export class SpellCard {
     this.spellPersonalData().description = desc;
     this.saveData();
   }
+
+  onFavClickEvent() {
+    this.spellPersonalData().favorite = !this.spellPersonalData().favorite;
+    this.saveData();
+  }
+
+  onPrepClickEvent() {
+    this.spellPersonalData().prepared = !this.spellPersonalData().prepared;
+    this.saveData();
+  }
 }
