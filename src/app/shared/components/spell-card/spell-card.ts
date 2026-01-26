@@ -1,14 +1,14 @@
 import { Component, computed, input } from '@angular/core';
-import { Trait } from '../trait/trait';
 import { Star } from '../star/star';
 import { PrepareButton } from '../prepare-button/prepare-button';
 import { FavButton } from '../fav-button/fav-button';
 import { PersonalSpellData } from '../../services/personal-spell-data';
 import { DescriptionArea } from '../description-area/description-area';
+import { Trait } from '../trait/trait';
 
 @Component({
   selector: 'app-spell-card',
-  imports: [Trait, Star, PrepareButton, FavButton, DescriptionArea],
+  imports: [Star, PrepareButton, FavButton, DescriptionArea, Trait],
   templateUrl: './spell-card.html',
   styleUrl: './spell-card.css',
 })

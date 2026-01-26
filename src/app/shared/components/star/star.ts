@@ -1,5 +1,5 @@
 import { CommonModule, NgClass } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
 @Component({
   selector: 'app-star',
@@ -8,12 +8,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './star.css',
 })
 export class Star {
-  @Input() starId: number = 0;
-  @Input() rating: number = 1;
-
-  @Output() starClicked = new EventEmitter<number>();
+  starId = input<number>(0);
+  rating = input<number>(1);
+  starClicked = output<number>();
 
   onClick() {
-    this.starClicked.emit(this.starId);
+    this.starClicked.emit(this.starId());
   }
 }

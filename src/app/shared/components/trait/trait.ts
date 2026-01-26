@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input, Input } from '@angular/core';
 
 @Component({
   selector: 'app-trait',
@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './trait.css',
 })
 export class Trait {
-  @Input() trait: String = 'trait';
+  trait = input.required<string>();
 }
