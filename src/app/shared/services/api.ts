@@ -10,7 +10,9 @@ export class Api {
   constructor(private http: HttpClient) {}
 
   getSpells(query: String): any {
-    return this.http.get(this.apiUrl + query);
+    return this.http.post(this.apiUrl, query, {
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 
   getAllSpells(): any {

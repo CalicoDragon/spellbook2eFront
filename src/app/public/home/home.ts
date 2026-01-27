@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Navbar } from '../../shared/components/navbar/navbar';
 import { SpellCard } from '../../shared/components/spell-card/spell-card';
-import { PersonalSpellData } from '../../shared/services/personal-spell-data';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +9,7 @@ import { PersonalSpellData } from '../../shared/services/personal-spell-data';
   styleUrl: './home.css',
 })
 export class Home {
-  constructor(protected dataService: PersonalSpellData) {}
+  constructor() {}
 
   spells: any[] = [];
 

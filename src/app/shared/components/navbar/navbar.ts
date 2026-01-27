@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, output, Output } from '@angular/core';
 import { Api } from '../../services/api';
 
 @Component({
@@ -8,7 +8,7 @@ import { Api } from '../../services/api';
   styleUrl: './navbar.css',
 })
 export class Navbar {
-  @Output() searchEvent = new EventEmitter<Array<any>>();
+  searchEvent = output<Array<any>>();
 
   spells: any[] = [];
   isFocus: boolean = false;
