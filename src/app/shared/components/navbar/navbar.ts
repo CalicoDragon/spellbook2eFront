@@ -1,5 +1,4 @@
-import { Component, EventEmitter, output, Output } from '@angular/core';
-import { Api } from '../../services/api';
+import { Component, output } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -8,30 +7,22 @@ import { Api } from '../../services/api';
   styleUrl: './navbar.css',
 })
 export class Navbar {
-  searchEvent = output<Array<any>>();
+  searchEvent = output<String>();
 
-  spells: any[] = [];
   isFocus: boolean = false;
-
-  constructor(private apiService: Api) {}
 
   onEnter(search: String = '') {
     if (this.isFocus) {
-      search ? this.getSpell(search) : this.getAllSpells();
+      this.searchEvent.emit(search);
+      // search ? this.getSpell(search) : this.getAllSpells();
     }
   }
 
-  getSpell(query: String): void {
-    this.apiService.getSpells(query).subscribe((data: any) => {
-      this.spells = data;
-      this.searchEvent.emit(this.spells);
-    });
-  }
+  // getSpell(query: String): void {
+  //   this.apiService.getSpells(query).subscribe((data: any) => this.searchEvent.emit(data));
+  // }
 
-  getAllSpells(): void {
-    this.apiService.getAllSpells().subscribe((data: any) => {
-      this.spells = data;
-      this.searchEvent.emit(this.spells);
-    });
-  }
+  // getAllSpells(): void {
+  //   this.apiService.getAllSpells().subscribe((data: any) => this.searchEvent.emit(data));
+  // }
 }

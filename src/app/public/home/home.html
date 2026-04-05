@@ -1,6 +1,6 @@
-<app-navbar (searchEvent)="updateSpells($event)" />
-@if (spells.length != 0) {
-  <div class="flex flex-wrap gap-8 justify-center mt-4">
+<app-navbar (searchEvent)="recieveSearch($event)" />
+@if (spells$ | async; as spells) {
+  <div class="flex flex-wrap gap-8 justify-center mt-4 ml-[16vw] mr-[16vw]">
     @for (spell of spells; track spell) {
       <app-spell-card [spell]="spell" />
     }

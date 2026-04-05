@@ -12,10 +12,8 @@ export class Api {
   getSpells(query: String): any {
     return this.http.post(
       this.apiUrl,
-      { name: query },
-      {
-        headers: { 'Content-Type': 'application/json' },
-      },
+      { query },
+      { headers: { 'Content-Type': 'application/json' } },
     );
   }
 
