@@ -1,28 +1,17 @@
 import { Component, output } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
 })
 export class Navbar {
-  searchEvent = output<String>();
-
+  searchEvent = output<string>();
   isFocus: boolean = false;
 
-  onEnter(search: String = '') {
-    if (this.isFocus) {
-      this.searchEvent.emit(search);
-      // search ? this.getSpell(search) : this.getAllSpells();
-    }
+  onEnter(search: string = '') {
+    if (this.isFocus) this.searchEvent.emit(search);
   }
-
-  // getSpell(query: String): void {
-  //   this.apiService.getSpells(query).subscribe((data: any) => this.searchEvent.emit(data));
-  // }
-
-  // getAllSpells(): void {
-  //   this.apiService.getAllSpells().subscribe((data: any) => this.searchEvent.emit(data));
-  // }
 }
