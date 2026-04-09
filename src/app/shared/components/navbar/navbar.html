@@ -1,7 +1,7 @@
 <nav
   class="sticky top-0 w-full flex justify-between items-center p-2 gap-4 h-[52px] pl-[19vw] pr-[19vw] bg-navbar text-background shadow-md shadow-title/12"
 >
-  <a routerLink="/"><span class="text-2xl font-semibold">Spellbook2e</span></a>
+  <span class="text-2xl font-semibold">Spellbook2e</span>
 
   <div class="divider"></div>
 
@@ -18,14 +18,14 @@
       (blur)="this.isFocus = false"
       #SearchBar
       type="text"
-      class="focus:outline-none"
+      class="grow focus:outline-none"
       placeholder="I ponder..."
     />
   </div>
 
   <div class="divider"></div>
 
-  <div class="flex justify-center items-center gap-1">
+  <div routerLink="/guide" class="flex justify-center items-center gap-1 cursor-pointer">
     <svg class="h-5" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 1 24 24">
       <path
         fill="currentColor"
@@ -33,6 +33,6 @@
         d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10m0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16m-1-4h2v2h-2zm0-1.992s2-.008 2 0C13 13.006 16 12 16 10c0-2.21-1.773-4-3.991-4A4 4 0 0 0 8 10h2c0-1.1.9-2 2-2s2 .9 2 2c0 .9-3 2.367-3 4.008"
       />
     </svg>
-    <a href="">Guide</a>
+    <span>Guide</span>
   </div>
 </nav>

@@ -5,10 +5,17 @@
 }
 
 .searchbar {
-  flex: 1;
+  flex-grow: 1;
   display: flex;
 }
 
 ::placeholder {
   color: #d6c9c2;
+}
+
+/* I gotta pass most stuff to plain css so I can make nice responsive view */
+@media (max-width: 600px) {
+  .divider {
+    display: none;
+  }
 }
