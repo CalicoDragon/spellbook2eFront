@@ -1,22 +1,24 @@
 <app-navbar (searchEvent)="receiverSearch($event)" />
 @let spellRequest = spells();
-@switch (spellRequest.loadingState) {
-  @case ('loading') {
-    <div class="throbber"></div>
-  }
-  @case ('error') {
-    <p>Error.</p>
-  }
-  @case ('success') {
-    @if (spellRequest.spells.length > 0) {
-      <p>Spells loaded: {{ spellRequest.spells.length }}</p>
-      <div class="flex flex-wrap gap-8 justify-center mt-4 ml-[10vw] mr-[10vw]">
-        @for (spell of spellRequest.spells; track spell) {
-          <app-spell-card [spell]="spell" />
-        }
-      </div>
-    } @else {
-      <p>No spells found</p>
+@if (spellRequest) {
+  @switch (spellRequest.loadingState) {
+    @case ('loading') {
+      <div class="throbber"></div>
+    }
+    @case ('error') {
+      <p>Error.</p>
+    }
+    @case ('success') {
+      @if (spellRequest.spells.length > 0) {
+        <p>Spells loaded: {{ spellRequest.spells.length }}</p>
+        <div class="flex flex-wrap gap-8 justify-center mt-4 ml-[10vw] mr-[10vw]">
+          @for (spell of spellRequest.spells; track spell) {
+            <app-spell-card [spell]="spell" />
+          }
+        </div>
+      } @else {
+        <p>No spells found with your search</p>
+      }
     }
   }
 }

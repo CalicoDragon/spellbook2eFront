@@ -5,7 +5,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { Navbar } from '../../shared/components/navbar/navbar';
 import { SpellCard } from '../../shared/components/spell-card/spell-card';
 import { Api } from '../../shared/services/api';
-import { SpellsRequest, Spell } from '../../shared/models/spell-model';
+import { SpellsRequest } from '../../shared/models/spell-model';
 
 @Component({
   selector: 'app-home',
@@ -16,18 +16,18 @@ import { SpellsRequest, Spell } from '../../shared/models/spell-model';
 export class Home {
   private readonly apiService = inject(Api);
   private readonly searchTriggered$ = new Subject<string>();
-  private readonly spells$: Observable<any> = this.searchTriggered$.pipe(
+  private readonly spells$: Observable<SpellsRequest> = this.searchTriggered$.pipe(
     switchMap((query) => {
       const spells$ = query ? this.apiService.getSpells(query) : this.apiService.getAllSpells();
 
       return spells$.pipe(
-        map((data) => ({ loadingState: 'success', spells: data })), // Tells TS to check that this value "satisfies" the interface and thus will also match that part of SpellsRequest
-        startWith({ loadingState: 'loading' } satisfies { loadingState: 'loading' }),
-        catchError(() => of({ loadingState: 'error' } satisfies { loadingState: 'error' })),
+        map((data) => ({ loadingState: 'success', spells: data }) as const), // as const forces TS to interpret { loadingState: 'success', spells: data } as the type { loadingState: 'success', spells: Spell[] } rather than { loadingState: string, spells: Spell[] } which it currently does
+        startWith({ loadingState: 'loading' } as const),
+        catchError(() => of({ loadingState: 'error' } as const)),
       );
     }),
   );
-  protected readonly spells: Signal<SpellsRequest> = toSignal(this.spells$);
+  protected readonly spells: Signal<SpellsRequest | undefined> = toSignal(this.spells$); // Marked as possible undefined as before doing a query it will be undefined
 
   protected receiverSearch(query: string) {
     this.searchTriggered$.next(query);
