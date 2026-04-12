@@ -1,4 +1,4 @@
-import { Component, inject, Signal } from '@angular/core';
+import { Component, inject, signal, Signal } from '@angular/core';
 import { catchError, map, Observable, of, startWith, Subject, switchMap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 
@@ -6,10 +6,11 @@ import { Navbar } from '../../shared/components/navbar/navbar';
 import { SpellCard } from '../../shared/components/spell-card/spell-card';
 import { Api } from '../../shared/services/api';
 import { SpellsRequest } from '../../shared/models/spell-model';
+import { Paginator } from '../../shared/components/paginator/paginator';
 
 @Component({
   selector: 'app-home',
-  imports: [Navbar, SpellCard],
+  imports: [Navbar, SpellCard, Paginator],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
@@ -29,7 +30,15 @@ export class Home {
   );
   protected readonly spells: Signal<SpellsRequest | undefined> = toSignal(this.spells$); // Marked as possible undefined as before doing a query it will be undefined
 
-  protected receiverSearch(query: string) {
+  protected receiverSearch(query: string): void {
     this.searchTriggered$.next(query);
+  }
+
+  // Pagination
+  protected page = signal<number>(1);
+  protected Math: Math = Math;
+
+  protected changePage(page: number): void {
+    this.page.set(page);
   }
 }

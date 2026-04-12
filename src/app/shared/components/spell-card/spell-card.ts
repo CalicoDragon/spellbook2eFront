@@ -5,6 +5,7 @@ import { FavButton } from '../fav-button/fav-button';
 import { PersonalSpellData } from '../../services/personal-spell-data';
 import { DescriptionArea } from '../description-area/description-area';
 import { Trait } from '../trait/trait';
+import { Spell } from '../../models/spell-model';
 
 @Component({
   selector: 'app-spell-card',
@@ -13,7 +14,7 @@ import { Trait } from '../trait/trait';
   styleUrl: './spell-card.css',
 })
 export class SpellCard {
-  spell = input.required<any>();
+  spell = input.required<Spell>();
   spellPersonalData = computed(() => this.dataService.getDataOfSpell(this.spell()));
 
   constructor(private dataService: PersonalSpellData) {}

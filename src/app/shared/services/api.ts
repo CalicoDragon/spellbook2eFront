@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Spell } from '../models/spell-model';
 
@@ -7,9 +7,8 @@ import { Spell } from '../models/spell-model';
   providedIn: 'root',
 })
 export class Api {
+  private http = inject(HttpClient);
   private apiUrl = 'http://localhost:3000/api/';
-
-  constructor(private http: HttpClient) {}
 
   getSpells(query: string): Observable<Spell[]> {
     return this.http.post<Spell[]>(
