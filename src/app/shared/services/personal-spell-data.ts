@@ -8,21 +8,13 @@ import { Spell } from '../models/spell-model';
 export class PersonalSpellData {
   _KEY = 'personalSpellData';
 
-  getAllSpellData() {
+  getAllSpellData(): Array<PersonalSpellDataModel> {
     const storedData = localStorage.getItem(this._KEY);
-    let parsedData: PersonalSpellDataModel[] = [];
-    if (storedData) {
-      parsedData = JSON.parse(storedData);
-    }
-
-    return parsedData;
+    return storedData ? JSON.parse(storedData) : [];
   }
 
   saveSpellData(data: PersonalSpellDataModel) {
     const parsedData: PersonalSpellDataModel[] = this.getAllSpellData();
-
-    console.log('new data entry: ');
-    console.log(data);
 
     // Check if this spell already has personal data
     const dataIndex = parsedData.findIndex((item) => item.name === data.name);
@@ -55,5 +47,16 @@ export class PersonalSpellData {
     }
 
     return data;
+  }
+
+  replaceSpellData(jsonFile: File) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (typeof reader.result === 'string') {
+        localStorage.setItem(this._KEY, reader.result);
+      }
+    };
+
+    reader.readAsText(jsonFile);
   }
 }

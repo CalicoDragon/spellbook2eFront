@@ -1,5 +1,6 @@
-import { Component, output } from '@angular/core';
+import { Component, inject, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { PersonalSpellData } from '../../services/personal-spell-data';
 
 @Component({
   selector: 'app-navbar',
@@ -10,8 +11,33 @@ import { RouterLink } from '@angular/router';
 export class Navbar {
   searchEvent = output<string>();
   isFocus = false;
+  dataService: PersonalSpellData = inject(PersonalSpellData);
 
   onEnter(search = '') {
     if (this.isFocus) this.searchEvent.emit(search);
+  }
+
+  DownloadJSON() {
+    const data = this.dataService.getAllSpellData();
+    const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+
+    // <a> element to download
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'personalSpellData.json';
+    document.body.appendChild(link);
+    link.click();
+
+    // Get rid of it
+    link.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  ImportJSON(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files) {
+      this.dataService.replaceSpellData(input.files[0]);
+    }
   }
 }
