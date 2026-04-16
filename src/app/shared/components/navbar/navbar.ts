@@ -9,9 +9,9 @@ import { RouterLink } from '@angular/router';
 })
 export class Navbar {
   searchEvent = output<string>();
-  isFocus: boolean = false;
+  isFocus = false;
 
-  onEnter(search: string = '') {
+  onEnter(search = '') {
     if (this.isFocus) this.searchEvent.emit(search);
   }
 }

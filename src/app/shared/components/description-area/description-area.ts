@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, output, Output } from '@angular/core';
+import { Component, Input, output } from '@angular/core';
 
 @Component({
   selector: 'app-description-area',
@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, OnInit, output, Output } from '@angular
   styleUrl: './description-area.css',
 })
 export class DescriptionArea {
-  @Input() description: string = '';
+  @Input() description = '';
   descriptionChanged = output<string>();
 
   onWriting(desc: string) {

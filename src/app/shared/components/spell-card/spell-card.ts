@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { Star } from '../star/star';
 import { PrepareButton } from '../prepare-button/prepare-button';
 import { FavButton } from '../fav-button/fav-button';
@@ -15,9 +15,8 @@ import { Spell } from '../../models/spell-model';
 })
 export class SpellCard {
   spell = input.required<Spell>();
+  dataService: PersonalSpellData = inject(PersonalSpellData);
   spellPersonalData = computed(() => this.dataService.getDataOfSpell(this.spell()));
-
-  constructor(private dataService: PersonalSpellData) {}
 
   stars = [1, 2, 3, 4, 5];
 

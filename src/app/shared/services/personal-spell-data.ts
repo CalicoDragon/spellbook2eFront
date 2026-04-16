@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { PersonalSpellDataModel } from '../models/personal-spell-data-model';
+import { Spell } from '../models/spell-model';
 
 @Injectable({
   providedIn: 'root',
@@ -37,7 +38,7 @@ export class PersonalSpellData {
     localStorage.setItem(this._KEY, JSON.stringify(parsedData));
   }
 
-  getDataOfSpell(spell: any): PersonalSpellDataModel {
+  getDataOfSpell(spell: Spell): PersonalSpellDataModel {
     const parsedData: PersonalSpellDataModel[] = this.getAllSpellData();
 
     let data = parsedData.find((item) => item.name === spell.name);
