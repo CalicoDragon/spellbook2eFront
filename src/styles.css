@@ -11,6 +11,8 @@
   --color-blank-star: #360004;
   --color-blank-favprep: #9c8b73;
   --color-navbar: #032a63;
+
+  --breakpoint-lg: 1110px;
 }
 
 html {

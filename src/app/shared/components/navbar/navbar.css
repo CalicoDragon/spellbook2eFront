@@ -15,7 +15,20 @@
 
 /* I gotta pass most stuff to plain css so I can make nice responsive view */
 @media (max-width: 600px) {
-  .divider {
+  .divider,
+  .logo {
     display: none;
+  }
+
+  .guideBtn {
+    span {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  nav {
+    padding: 6px;
   }
 }

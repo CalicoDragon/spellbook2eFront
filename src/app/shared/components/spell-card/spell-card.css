@@ -1,3 +1,9 @@
 h1 {
   font-variant-caps: small-caps;
 }
+
+@media (max-width: 600px) {
+  .card {
+    width: 100vw;
+  }
+}

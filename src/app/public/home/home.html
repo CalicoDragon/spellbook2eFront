@@ -9,20 +9,23 @@
       <p>Error.</p>
     }
     @case ('success') {
-      <app-paginator
-        (changePageEvent)="changePage($event)"
-        [spellsLength]="spellRequest.spells.length"
-        [currPage]="page()"
-      />
-      <div class="flex flex-wrap gap-8 justify-center mt-4 mb-10 ml-[10vw] mr-[10vw]">
-        @for (spell of spellRequest.spells; track spell; let i = $index) {
-          <!-- Only print current page -->
-          @if (i >= page() * 50 - 50 && i <= Math.min(page() * 50, spellRequest.spells.length)) {
-            <app-spell-card [spell]="spell" />
+      <div class="marginDiv flex flex-col items-center justify-center ml-[16vw] mr-[16vw]">
+        <app-paginator
+          class="w-full"
+          (changePageEvent)="changePage($event)"
+          [spellsLength]="spellRequest.spells.length"
+          [currPage]="page()"
+        />
+        <div class="flex flex-wrap gap-8 justify-center mt-4 mb-10">
+          @for (spell of spellRequest.spells; track spell; let i = $index) {
+            <!-- Only print current page -->
+            @if (i >= page() * 50 - 50 && i <= Math.min(page() * 50, spellRequest.spells.length)) {
+              <app-spell-card [spell]="spell" />
+            }
+          } @empty {
+            <p>No spells found with your search</p>
           }
-        } @empty {
-          <p>No spells found with your search</p>
-        }
+        </div>
       </div>
     }
   }
