@@ -1,0 +1,90 @@
+h1 {
+  font-size: xx-large;
+}
+
+h2 {
+  font-size: x-large;
+}
+
+section {
+  margin: 0 16vw 0 16vw;
+  padding: 1em 0 1em 0;
+}
+
+header {
+  min-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-foreground);
+}
+
+.index {
+  display: flex;
+  width: 50%;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2em;
+  margin: 2em;
+
+  button {
+    min-width: 10em;
+    font-weight: 600;
+    padding: 0.2em 0.5em;
+    color: var(--color-purple-700);
+    border: solid 1px var(--color-purple-700);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  button:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+}
+
+.sectionContent {
+  display: flex;
+  gap: 1em;
+}
+
+.separator {
+  width: 100%;
+  height: 1px;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.3);
+}
+
+/* EXAMPLE CARDS */
+
+.exampleCardsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 100%;
+}
+
+.exampleCard {
+  background: #fff;
+  padding: 0.5em 0.5em 0.5em 1em;
+  box-shadow:
+    0 8px 10px 0 rgba(0, 0, 0, 0.1),
+    -4px 0 0 0 rgb(201, 52, 52);
+
+  h3 {
+    font-size: large;
+    color: rgb(201, 52, 52);
+  }
+
+  p {
+    color: #7f7f7f;
+  }
+}
+
+/* ICONS */
+
+.returnBtn {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
