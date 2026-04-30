@@ -7,4 +7,8 @@ import { RouterLink } from '@angular/router';
   templateUrl: './guide.html',
   styleUrl: './guide.css',
 })
-export class Guide {}
+export class Guide {
+  protected scrollTo(element: HTMLElement) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+}

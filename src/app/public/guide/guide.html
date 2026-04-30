@@ -7,158 +7,200 @@
 ></a>
 
 <header>
-  <h1>Welcome to Spellbook2e Guide!</h1>
-  <span>Search, rank and save your favorite pathfinder spells!</span>
+  <div class="flex flex-col justify-center items-center">
+    <h1>Welcome to Spellbook2e Guide!</h1>
+    <span>Search, rank and save your favorite pathfinder spells!</span>
+  </div>
   <div class="index">
-    <button type="button">Introduction</button>
-    <button type="button">Name</button>
-    <button type="button">Traits</button>
-    <button type="button">Tradition</button>
-    <button type="button">Rank</button>
-    <button type="button">Actions</button>
-    <button type="button">Export</button>
-    <button type="button">Import</button>
+    <button (click)="scrollTo(Introduction)" type="button">Introduction</button>
+    <button (click)="scrollTo(Name)" type="button">Name</button>
+    <button (click)="scrollTo(Traits)" type="button">Traits</button>
+    <button (click)="scrollTo(Tradition)" type="button">Tradition</button>
+    <button (click)="scrollTo(Rank)" type="button">Rank</button>
+    <button (click)="scrollTo(Actions)" type="button">Actions</button>
+    <button (click)="scrollTo(Examples)" type="button">Examples</button>
+    <button (click)="scrollTo(ExportImport)" type="button">Export Import</button>
   </div>
 </header>
 <div class="separator"></div>
 <main>
-  <section>
-    <h2>Introduction</h2>
-    <div class="sectionContent">
+  <section #Introduction>
+    <div>
+      <h2>Introduction</h2>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, error, distinctio similique
         cumque tenetur ea architecto consequuntur aspernatur labore, deleniti a optio nobis nemo
         adipisci rem quia ex laborum fugiat.
       </p>
-      <div class="exampleCardsContainer">
-        <div class="exampleCard">
-          <h3>name:"Acid Splash"</h3>
-          <p>Will look for a spell named Acid Splash</p>
-        </div>
-        <div class="exampleCard">
-          <h3>name:"Acid Splash"</h3>
-          <p>Will look for a spell named Acid Splash</p>
-        </div>
+    </div>
+  </section>
+  <div class="separator"></div>
+  <section #Name>
+    <div>
+      <h2>Name</h2>
+      <p>
+        You can look up for spells with a certain name by using the name: keyword or by just typing
+        without a keyword. Name searches are case insensitive so you don't have to worry about
+        perfectly matching the name of a spell. <br /><br />
+
+        For the parameter, you can encapsulate the value with the use of name:"value" or simply just
+        "value", this is useful as you may want a literal name without making two filters, as the
+        search uses spaces as a way to separate filters<br /><br />
+
+        Name searches work making them match those words in that order anywhere in a spell name,
+        this means you can write fragments of names and they search for anything that matches.
+      </p>
+    </div>
+
+    <div class="exampleCardsContainer">
+      <div class="exampleCard">
+        <h3>name:"Acid Splash"</h3>
+        <p>Will look for spells where their name include "Acid Splash"</p>
+      </div>
+      <div class="exampleCard">
+        <h3>name:Ac name:Sp</h3>
+        <p>Will look for spells where their name include "Ac" and "Sp"</p>
+      </div>
+      <div class="exampleCard">
+        <h3>ac sp</h3>
+        <p>No need for uppercase letters or writing the name: keyword!</p>
       </div>
     </div>
   </section>
   <div class="separator"></div>
-  <section>
-    <h2>Name</h2>
-    <div class="sectionContent">
+  <section #Traits>
+    <div>
+      <h2>Traits</h2>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, error, distinctio similique
-        cumque tenetur ea architecto consequuntur aspernatur labore, deleniti a optio nobis nemo
-        adipisci rem quia ex laborum fugiat.
+        You can look up for spells with a certain trait by using the trait:, tr: or t: keywords. For
+        this keyword, the trait will have to be entirely in lowercase. <br /><br />
+
+        Trait searches work by matching exactly the name of the trait, except you can also use the
+        same keywords with an exclamation mark in front of the keyword to look for spells that do
+        not contain said trait.
       </p>
-      <div class="exampleCardsContainer">
-        <div class="exampleCard">
-          <h3>name:"Acid Splash"</h3>
-          <p>Will look for a spell named Acid Splash</p>
-        </div>
+    </div>
+    <div class="exampleCardsContainer">
+      <div class="exampleCard">
+        <h3>trait:fire</h3>
+        <p>Will look for spells with the fire trait</p>
+      </div>
+      <div class="exampleCard">
+        <h3>!t:mental</h3>
+        <p>Will look for spells without the mental trait</p>
       </div>
     </div>
   </section>
   <div class="separator"></div>
-  <section>
-    <h2>Traits</h2>
-    <div class="sectionContent">
+  <section #Tradition>
+    <div>
+      <h2>Tradition</h2>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, error, distinctio similique
-        cumque tenetur ea architecto consequuntur aspernatur labore, deleniti a optio nobis nemo
-        adipisci rem quia ex laborum fugiat.
+        You can look up spells that are inside a specific tradition by using the tradition: or trad:
+        keywords. For this keyword, the trait will have to be entirely in lowercase. <br /><br />
+
+        Tradition searches work by matching exactly the name of the trait, except you can also use
+        the same keywords with an exclamation mark in front of the keyword to look for spells that
+        are not part of said tradition.
       </p>
-      <div class="exampleCardsContainer">
-        <div class="exampleCard">
-          <h3>name:"Acid Splash"</h3>
-          <p>Will look for a spell named Acid Splash</p>
-        </div>
+    </div>
+    <div class="exampleCardsContainer">
+      <div class="exampleCard">
+        <h3>tradition:arcane</h3>
+        <p>Will look for spells in the arcane tradition.</p>
+      </div>
+      <div class="exampleCard">
+        <h3>trad:arcane trad:primal !trad:occult</h3>
+        <p>Will look for spells that are arcane and primal but not occult</p>
       </div>
     </div>
   </section>
   <div class="separator"></div>
-  <section>
-    <h2>Tradition</h2>
-    <div class="sectionContent">
+  <section #Rank>
+    <div>
+      <h2>Rank</h2>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, error, distinctio similique
-        cumque tenetur ea architecto consequuntur aspernatur labore, deleniti a optio nobis nemo
-        adipisci rem quia ex laborum fugiat.
+        You can look up spells by their rank using the rank:, lvl: or r: keywords. For the
+        parameter, always include a number numerically. <br /><br />
+
+        Rank searches work by matching the number of the rank, except you can also use the same
+        keywords with an exclamation mark in front of the keyword to look for spells that are not
+        said rank.
       </p>
-      <div class="exampleCardsContainer">
-        <div class="exampleCard">
-          <h3>name:"Acid Splash"</h3>
-          <p>Will look for a spell named Acid Splash</p>
-        </div>
+    </div>
+    <div class="exampleCardsContainer">
+      <div class="exampleCard">
+        <h3>rank:1</h3>
+        <p>Will look for 1st rank spells</p>
+      </div>
+      <div class="exampleCard">
+        <h3>!lvl:5</h3>
+        <p>Will look for spells that are not rank 5.</p>
       </div>
     </div>
   </section>
   <div class="separator"></div>
-  <section>
-    <h2>Rank</h2>
-    <div class="sectionContent">
+  <section #Actions>
+    <div>
+      <h2>Actions</h2>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, error, distinctio similique
-        cumque tenetur ea architecto consequuntur aspernatur labore, deleniti a optio nobis nemo
-        adipisci rem quia ex laborum fugiat.
+        You can look up spells by the amount or type of actions they require by using the actions:
+        or a: keywords. For the parameter, you can encapsulate the value with the use of
+        actions:"value" for the ones that need spaces in their value, as the search uses spaces as a
+        way to separate filters. <br /><br />
+
+        Action searches work by matching the literal name of the actions, except you can also use
+        the same keywords with an exclamation mark in front of the keyword to look for spells that
+        do not use said actions.
       </p>
-      <div class="exampleCardsContainer">
-        <div class="exampleCard">
-          <h3>name:"Acid Splash"</h3>
-          <p>Will look for a spell named Acid Splash</p>
-        </div>
+    </div>
+    <div class="exampleCardsContainer">
+      <div class="exampleCard">
+        <h3>actions:1</h3>
+        <p>Will look for spells that require one action.</p>
+      </div>
+      <div class="exampleCard">
+        <h3>a:"1 to 3"</h3>
+        <p>Will look for spells that require one to three actions.</p>
       </div>
     </div>
   </section>
   <div class="separator"></div>
-  <section>
-    <h2>Actions</h2>
-    <div class="sectionContent">
+  <section class="examplesSection" #Examples>
+    <h2>Examples</h2>
+    <div class="exampleCard">
+      <h3>trad:arcane lvl:2 trait:attack</h3>
+      <p>Level 3 arcane caster looking for new toys to use with sure strike? Check these out!</p>
+    </div>
+    <div class="exampleCard">
+      <h3>trad:primal actions:1</h3>
+      <p>Primal caster looking for something to fill out that remaining action?</p>
+    </div>
+    <div class="exampleCard">
+      <h3>trad:occult !trait:mental</h3>
+      <p>Maybe you are just tired of mindless creatures!</p>
+    </div>
+    <div class="exampleCard">
+      <h3>a:"1 to 3" save:fortitude</h3>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, error, distinctio similique
-        cumque tenetur ea architecto consequuntur aspernatur labore, deleniti a optio nobis nemo
-        adipisci rem quia ex laborum fugiat.
+        Maybe preparing some action flexibility would be nice to have with the uncertainty of the
+        session.
       </p>
-      <div class="exampleCardsContainer">
-        <div class="exampleCard">
-          <h3>name:"Acid Splash"</h3>
-          <p>Will look for a spell named Acid Splash</p>
-        </div>
-      </div>
     </div>
   </section>
   <div class="separator"></div>
-  <section>
-    <h2>Exporting data</h2>
-    <div class="sectionContent">
+  <section #ExportImport>
+    <div>
+      <h2>Exporting and Importing data</h2>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, error, distinctio similique
-        cumque tenetur ea architecto consequuntur aspernatur labore, deleniti a optio nobis nemo
-        adipisci rem quia ex laborum fugiat.
+        You may want to export your descriptions, rankings, favorited and prepared spells. This is
+        stored in the "localStorage" of your browser so there is no need for you to create an
+        account.<br /><br />
+
+        By pressing the export button in the top bar in the main app, you can download this data to
+        later import it with the button next to it. This is what you need to do if you are scared of
+        losing the data, so, as a backup of sorts, or if you just want to share it with a friend.
       </p>
-      <div class="exampleCardsContainer">
-        <div class="exampleCard">
-          <h3>name:"Acid Splash"</h3>
-          <p>Will look for a spell named Acid Splash</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <div class="separator"></div>
-  <section>
-    <h2>Importing data</h2>
-    <div class="sectionContent">
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, error, distinctio similique
-        cumque tenetur ea architecto consequuntur aspernatur labore, deleniti a optio nobis nemo
-        adipisci rem quia ex laborum fugiat.
-      </p>
-      <div class="exampleCardsContainer">
-        <div class="exampleCard">
-          <h3>name:"Acid Splash"</h3>
-          <p>Will look for a spell named Acid Splash</p>
-        </div>
-      </div>
     </div>
   </section>
 </main>
