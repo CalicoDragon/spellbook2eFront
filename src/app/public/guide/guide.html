@@ -18,8 +18,11 @@
     <button (click)="scrollTo(Tradition)" type="button">Tradition</button>
     <button (click)="scrollTo(Rank)" type="button">Rank</button>
     <button (click)="scrollTo(Actions)" type="button">Actions</button>
+    <button (click)="scrollTo(Save)" type="button">Save</button>
+    <button (click)="scrollTo(Area)" type="button">Area</button>
+    <button (click)="scrollTo(Sustained)" type="button">Sustained</button>
     <button (click)="scrollTo(Examples)" type="button">Examples</button>
-    <button (click)="scrollTo(ExportImport)" type="button">Export Import</button>
+    <button (click)="scrollTo(ExportImport)" type="button">Export / Import</button>
   </div>
 </header>
 <div class="separator"></div>
@@ -163,6 +166,84 @@
         <h3>a:"1 to 3"</h3>
         <p>Will look for spells that require one to three actions.</p>
       </div>
+      <div class="exampleCard">
+        <h3>a:"2 or 3"</h3>
+        <p>Will look for spells that require two or three actions.</p>
+      </div>
+    </div>
+  </section>
+  <div class="separator"></div>
+  <section #Save>
+    <div>
+      <h2>Save target</h2>
+      <p>
+        You can look up spells by the save defense they target by using the save: keyword. For this
+        keyword, the trait will have to be entirely in lowercase. <br /><br />
+
+        Save searches work by matching the literal name of the save target, except you can also use
+        the same keyword with an exclamation mark in front of the keyword to look for spells that do
+        not target said save.
+      </p>
+    </div>
+    <div class="exampleCardsContainer">
+      <div class="exampleCard">
+        <h3>save:fortitude</h3>
+        <p>Will look for spells that require one action.</p>
+      </div>
+      <div class="exampleCard">
+        <h3>!save:will</h3>
+        <p>Will look for spells that require one to three actions.</p>
+      </div>
+    </div>
+  </section>
+  <div class="separator"></div>
+  <section #Area>
+    <div>
+      <h2>Area type</h2>
+      <p>
+        You can look up spells by the area of effect by using the area: keyword. For this keyword,
+        the trait will have to be entirely in lowercase. <br /><br />
+
+        Area searches work by matching the literal name of the area type, except you can also use
+        the same keyword with an exclamation mark in front of the keyword to look for spells that do
+        not have that area of effect type.<br /><br />
+
+        The possible areas are burst, cone, emanation and line.
+      </p>
+    </div>
+    <div class="exampleCardsContainer">
+      <div class="exampleCard">
+        <h3>area:burst</h3>
+        <p>Will look for spells that require one action.</p>
+      </div>
+      <div class="exampleCard">
+        <h3>!area:cone</h3>
+        <p>Will look for spells that require one to three actions.</p>
+      </div>
+    </div>
+  </section>
+  <div class="separator"></div>
+  <section #Sustained>
+    <div>
+      <h2>Is Sustained</h2>
+      <p>
+        You can look up spells by the area of effect by using the area: keyword. For this keyword,
+        the trait will have to be entirely in lowercase. <br /><br />
+
+        Area searches work by matching the literal name of the area type, except you can also use
+        the same keyword with an exclamation mark in front of the keyword to look for spells that do
+        not have that area of effect type.
+      </p>
+    </div>
+    <div class="exampleCardsContainer">
+      <div class="exampleCard">
+        <h3>sustained:true</h3>
+        <p>Will look for spells that can be sustained.</p>
+      </div>
+      <div class="exampleCard">
+        <h3>sustained:false</h3>
+        <p>Will look for spells that can't be sustained.</p>
+      </div>
     </div>
   </section>
   <div class="separator"></div>
@@ -174,18 +255,23 @@
     </div>
     <div class="exampleCard">
       <h3>trad:primal actions:1</h3>
-      <p>Primal caster looking for something to fill out that remaining action?</p>
+      <p>You like plants and you like using all your actions even more</p>
     </div>
     <div class="exampleCard">
       <h3>trad:occult !trait:mental</h3>
       <p>Maybe you are just tired of mindless creatures!</p>
     </div>
     <div class="exampleCard">
-      <h3>a:"1 to 3" save:fortitude</h3>
-      <p>
-        Maybe preparing some action flexibility would be nice to have with the uncertainty of the
-        session.
-      </p>
+      <h3>t:fire area:burst lvl:3</h3>
+      <p>Everyone's favorite!</p>
+    </div>
+    <div class="exampleCard">
+      <h3>save:will t:subtle</h3>
+      <p>What a neat way to filter spells for a new and exciting on theme staff!</p>
+    </div>
+    <div class="exampleCard">
+      <h3>t:cantrip save:will</h3>
+      <p>Mhmmm... This looks... kind of empty?</p>
     </div>
   </section>
   <div class="separator"></div>
