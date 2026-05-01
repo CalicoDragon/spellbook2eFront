@@ -16,9 +16,8 @@
 
 .fav-blank {
   height: 22px;
-  fill: transparent;
-  stroke: var(--color-background);
-  stroke-width: 2px;
+  fill: var(--color-background);
+  opacity: 0.5;
 }
 
 ::placeholder {
