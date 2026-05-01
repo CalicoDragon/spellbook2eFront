@@ -9,6 +9,18 @@
   display: flex;
 }
 
+.fav-filled {
+  height: 26px;
+  fill: var(--color-background);
+}
+
+.fav-blank {
+  height: 22px;
+  fill: transparent;
+  stroke: var(--color-background);
+  stroke-width: 2px;
+}
+
 ::placeholder {
   color: #d6c9c2;
 }

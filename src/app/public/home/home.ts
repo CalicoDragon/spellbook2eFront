@@ -7,6 +7,7 @@ import { SpellCard } from '../../shared/components/spell-card/spell-card';
 import { Api } from '../../shared/services/api';
 import { SpellsRequest } from '../../shared/models/spell-model';
 import { Paginator } from '../../shared/components/paginator/paginator';
+import { PersonalSpellData } from '../../shared/services/personal-spell-data';
 
 @Component({
   selector: 'app-home',
@@ -41,4 +42,7 @@ export class Home {
   protected changePage(page: number): void {
     this.page.set(page);
   }
+
+  // fav prep filters
+  protected readonly personalDataService = inject(PersonalSpellData);
 }

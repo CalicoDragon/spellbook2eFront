@@ -1,7 +1,7 @@
 <nav
   class="sticky top-0 w-full flex justify-between items-center p-2 gap-4 h-[52px] pl-[16vw] pr-[16vw] bg-navbar text-background shadow-md shadow-title/12"
 >
-  <span class="logo text-2xl font-semibold">Spellbook2e</span>
+  <span class="logo text-2xl font-semibold select-none">Spellbook2e</span>
 
   <div class="divider"></div>
 
@@ -21,6 +21,34 @@
       class="grow focus:outline-none"
       placeholder="I ponder..."
     />
+  </div>
+  <div class="flex">
+    <div class="flex w-7 justify-center items-center">
+      <svg
+        (click)="favFilter.set(!favFilter())"
+        [ngClass]="{ 'fav-filled': favFilter(), 'fav-blank': !favFilter() }"
+        aria-hidden="true"
+        class="h-6"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M12 20c-2.205-.48-9-4.24-9-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.76-6.795 10.52-9 11"
+        />
+      </svg>
+    </div>
+    <div class="flex w-7 justify-center items-center">
+      <svg
+        (click)="prepFilter.set(!prepFilter())"
+        [ngClass]="{ 'fav-filled': prepFilter(), 'fav-blank': !prepFilter() }"
+        aria-hidden="true"
+        class="h-6"
+        viewBox="-2 -2 24 24"
+      >
+        <path
+          d="M16 3h2v16H5c-1.66 0-3-1.34-3-3V4c0-1.66 1.34-3 3-3h9v14H5c-.55 0-1 .45-1 1s.45 1 1 1h11z"
+        />
+      </svg>
+    </div>
   </div>
 
   <div class="divider"></div>

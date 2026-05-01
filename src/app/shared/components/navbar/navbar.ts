@@ -1,10 +1,11 @@
-import { Component, inject, output } from '@angular/core';
+import { Component, inject, output, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { PersonalSpellData } from '../../services/personal-spell-data';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink],
+  imports: [RouterLink, NgClass],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
 })
@@ -12,6 +13,8 @@ export class Navbar {
   searchEvent = output<string>();
   isFocus = false;
   dataService: PersonalSpellData = inject(PersonalSpellData);
+  favFilter = signal(false);
+  prepFilter = signal(false);
 
   onEnter(search = '') {
     if (this.isFocus) this.searchEvent.emit(search);
