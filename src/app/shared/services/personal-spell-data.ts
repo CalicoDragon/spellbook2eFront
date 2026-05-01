@@ -8,7 +8,7 @@ import { Spell } from '../models/spell-model';
 export class PersonalSpellData {
   _KEY = 'personalSpellData';
 
-  getAllSpellData(): Array<PersonalSpellDataModel> {
+  getAllSpellData(): PersonalSpellDataModel[] {
     const storedData = localStorage.getItem(this._KEY);
     return storedData ? JSON.parse(storedData) : [];
   }
@@ -58,5 +58,17 @@ export class PersonalSpellData {
     };
 
     reader.readAsText(jsonFile);
+  }
+
+  isSpellFavorited(spell: Spell): boolean {
+    const spellData = this.getDataOfSpell(spell);
+
+    return spellData.favorite;
+  }
+
+  isSpellPrepared(spell: Spell): boolean {
+    const spellData = this.getDataOfSpell(spell);
+
+    return spellData.prepared;
   }
 }
