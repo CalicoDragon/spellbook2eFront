@@ -21,4 +21,5 @@ html {
 
 * {
   font-family: var(--font-nunito);
+  scrollbar-color: var(--color-title) transparent;
 }
