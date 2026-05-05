@@ -42,4 +42,8 @@
   nav {
     padding: 6px;
   }
+
+  .logo {
+    display: none;
+  }
 }
