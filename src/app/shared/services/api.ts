@@ -8,7 +8,7 @@ import { Spell } from '../models/spell-model';
 })
 export class Api {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/api/';
+  private apiUrl = 'https://spellbook2eback.onrender.com/api/';
 
   getSpells(query: string): Observable<Spell[]> {
     return this.http.post<Spell[]>(
