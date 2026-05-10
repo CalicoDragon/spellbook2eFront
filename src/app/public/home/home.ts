@@ -33,6 +33,7 @@ export class Home {
 
   protected receiverSearch(query: string): void {
     this.searchTriggered$.next(query);
+    this.changePage(1);
   }
 
   // Pagination

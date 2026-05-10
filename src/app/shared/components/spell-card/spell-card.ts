@@ -22,8 +22,6 @@ export class SpellCard {
   stars = [1, 2, 3, 4, 5];
 
   saveData() {
-    console.log(`Saving data: ${this.spellPersonalData}`);
-
     this.dataService.saveSpellData(this.spellPersonalData());
   }
 
