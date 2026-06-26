@@ -19,8 +19,11 @@
     <button (click)="scrollTo(Rank)" type="button">Rank</button>
     <button (click)="scrollTo(Actions)" type="button">Actions</button>
     <button (click)="scrollTo(Save)" type="button">Save</button>
+    <button (click)="scrollTo(Range)" type="button">Range</button>
     <button (click)="scrollTo(Area)" type="button">Area</button>
+    <button (click)="scrollTo(Duration)" type="button">Duration</button>
     <button (click)="scrollTo(Sustained)" type="button">Sustained</button>
+    <button (click)="scrollTo(Target)" type="button">Target</button>
     <button (click)="scrollTo(Examples)" type="button">Examples</button>
     <button (click)="scrollTo(ExportImport)" type="button">Export / Import</button>
   </div>
@@ -31,9 +34,25 @@
     <div>
       <h2>Introduction</h2>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, error, distinctio similique
-        cumque tenetur ea architecto consequuntur aspernatur labore, deleniti a optio nobis nemo
-        adipisci rem quia ex laborum fugiat.
+        Welcome to spellbook2e, the web tool for all your spell searching needs! The reason why I
+        made this website is, frankly, to use it myself. I love using Scryfall and I wanted to make
+        a similar tool for pathfinder spells, as I always struggled to look for spells in the system
+        with the current tools.<br /><br />
+
+        The main features of the website are the searchbar, and the ability to have your own
+        personal data on your favorite spells!<br />
+        For the searchbar, I made this guide page, it has many filters so I thought it was needed.
+        Otherwise, It would be pretty much impossible to figure it out.<br />
+        I took inspiration by all of those pathfinder2e guides online that rank features of the
+        system and add a little bit of their opinion, so you can also do that here.<br />
+        It is stored in the localStorage inside your browser, so only YOU have access to it. This
+        also means that if you plan on using spellbook2e in a different browser or device you will
+        have to export your data, which is explained at the end of the guide.<br /><br />
+
+        I hope you enjoy using spellbook2e as much as I enjoyed making it, if you have any
+        suggestion or bug report, anything... let me know 😼<br /><br />
+
+        - aCalicoDragon
       </p>
     </div>
   </section>
@@ -42,16 +61,9 @@
     <div>
       <h2>Name</h2>
       <p>
-        You can look up for spells with a certain name by using the name: keyword or by just typing
-        without a keyword. Name searches are case insensitive so you don't have to worry about
-        perfectly matching the name of a spell. <br /><br />
-
-        For the parameter, you can encapsulate the value with the use of name:"value" or simply just
-        "value", this is useful as you may want a literal name without making two filters, as the
-        search uses spaces as a way to separate filters<br /><br />
-
-        Name searches work making them match those words in that order anywhere in a spell name,
-        this means you can write fragments of names and they search for anything that matches.
+        Look for spells with a certain name by using the 'name:' keyword or by typing without a
+        keyword. <br /><br />
+        Name searches are not case sensitive, and they also allow for partial searches.
       </p>
     </div>
 
@@ -75,12 +87,12 @@
     <div>
       <h2>Traits</h2>
       <p>
-        You can look up for spells with a certain trait by using the trait:, tr: or t: keywords. For
-        this keyword, the trait will have to be entirely in lowercase. <br /><br />
+        Use the keywords 'trait:', 'tr:' or 't:' to look for spells with a certain trait. The trait
+        must be entirely in lowercase.
+        <br /><br />
 
-        Trait searches work by matching exactly the name of the trait, except you can also use the
-        same keywords with an exclamation mark in front of the keyword to look for spells that do
-        not contain said trait.
+        Trait searches work by matching exactly to the name of the trait. Use the same keywords with
+        an exclamation mark in front to look for spells that do not contain said trait.
       </p>
     </div>
     <div class="exampleCardsContainer">
@@ -99,12 +111,13 @@
     <div>
       <h2>Tradition</h2>
       <p>
-        You can look up spells that are inside a specific tradition by using the tradition: or trad:
-        keywords. For this keyword, the trait will have to be entirely in lowercase. <br /><br />
+        Use the keywords 'tradition:' or 'trad:' to look for spells with of a certain tradition. The
+        tradition must be entirely in lowercase.
+        <br /><br />
 
-        Tradition searches work by matching exactly the name of the trait, except you can also use
-        the same keywords with an exclamation mark in front of the keyword to look for spells that
-        are not part of said tradition.
+        Tradition searches work by matching exactly to the name of the tradition. Use the same
+        keywords with an exclamation mark in front to look for spells that are not part of said
+        tradition.
       </p>
     </div>
     <div class="exampleCardsContainer">
@@ -123,12 +136,14 @@
     <div>
       <h2>Rank</h2>
       <p>
-        You can look up spells by their rank using the rank:, lvl: or r: keywords. For the
-        parameter, always include a number numerically. <br /><br />
+        Use the keywords 'rank:', 'lvl:' or 'r:' to look for spells of a certain rank. The rank must
+        be a number.
+        <br /><br />
 
-        Rank searches work by matching the number of the rank, except you can also use the same
-        keywords with an exclamation mark in front of the keyword to look for spells that are not
-        said rank.
+        Rank searches work by matching exactly to the number of the rank. Use the same keywords with
+        an exclamation mark in front to look for spells that are not of that rank. In addition, look
+        for spells with a greater or lesser rank than the argument by adding either '>' or '<'
+        before the keyword.
       </p>
     </div>
     <div class="exampleCardsContainer">
@@ -140,6 +155,10 @@
         <h3>!lvl:5</h3>
         <p>Will look for spells that are not rank 5.</p>
       </div>
+      <div class="exampleCard">
+        <h3>&lt;lvl:5</h3>
+        <p>Will look for spells with a rank lesser than 5.</p>
+      </div>
     </div>
   </section>
   <div class="separator"></div>
@@ -147,14 +166,14 @@
     <div>
       <h2>Actions</h2>
       <p>
-        You can look up spells by the amount or type of actions they require by using the actions:
-        or a: keywords. For the parameter, you can encapsulate the value with the use of
-        actions:"value" for the ones that need spaces in their value, as the search uses spaces as a
-        way to separate filters. <br /><br />
+        Use the keywords 'actions:' or 'a:' to look for spells that require a specific amount of
+        actions. For the value of the keyword encapsulate it as "1 action" since the search uses
+        spaces as a divider of filters.
+        <br /><br />
 
-        Action searches work by matching the literal name of the actions, except you can also use
-        the same keywords with an exclamation mark in front of the keyword to look for spells that
-        do not use said actions.
+        Action searches work by matching exactly to the name and number of the action. Use the same
+        keywords with an exclamation mark in front to look for spells that do not require that
+        action.
       </p>
     </div>
     <div class="exampleCardsContainer">
@@ -177,12 +196,12 @@
     <div>
       <h2>Save target</h2>
       <p>
-        You can look up spells by the save defense they target by using the save: keyword. For this
-        keyword, the trait will have to be entirely in lowercase. <br /><br />
+        Use the keyword 'save:' to look for spells that target a certain save throw. The save must
+        be entirely in lowercase.
+        <br /><br />
 
-        Save searches work by matching the literal name of the save target, except you can also use
-        the same keyword with an exclamation mark in front of the keyword to look for spells that do
-        not target said save.
+        Save throw searches work by matching exactly to the name of the save. Use the same keyword
+        with an exclamation mark in front to look for spells that do not target that save.
       </p>
     </div>
     <div class="exampleCardsContainer">
@@ -197,28 +216,77 @@
     </div>
   </section>
   <div class="separator"></div>
+  <section #Range>
+    <div>
+      <h2>Range</h2>
+      <p>
+        Use the keyword 'range:' to look for spells that have a certain range. For the value of the
+        keyword encapsulate it as "20 feet" since the search uses spaces as a divider of filters.
+        <br /><br />
+
+        Range searches work by matching exactly to the name and number of the range. Use the same
+        keyword with an exclamation mark in front to look for spells that do not have that range.
+      </p>
+    </div>
+    <div class="exampleCardsContainer">
+      <div class="exampleCard">
+        <h3>range:touch</h3>
+        <p>Will look for spells that are touch range.</p>
+      </div>
+      <div class="exampleCard">
+        <h3>!range:"30 feet"</h3>
+        <p>Will look for spells that aren't 30 feet.</p>
+      </div>
+    </div>
+  </section>
+  <div class="separator"></div>
   <section #Area>
     <div>
       <h2>Area type</h2>
       <p>
-        You can look up spells by the area of effect by using the area: keyword. For this keyword,
-        the trait will have to be entirely in lowercase. <br /><br />
+        Use the keyword 'area:' to look for spells of a specific area type. The area must be in
+        lowercase.
+        <br /><br />
 
-        Area searches work by matching the literal name of the area type, except you can also use
-        the same keyword with an exclamation mark in front of the keyword to look for spells that do
-        not have that area of effect type.<br /><br />
-
-        The possible areas are burst, cone, emanation and line.
+        Area searches work by matching exactly to the name of the area type. Use the same keyword
+        with an exclamation mark in front to look for spells that do not have that area type. The
+        area types are burst, cone, emanation and line.
       </p>
     </div>
     <div class="exampleCardsContainer">
       <div class="exampleCard">
         <h3>area:burst</h3>
-        <p>Will look for spells that require one action.</p>
+        <p>Will look for spells with a burst area type.</p>
       </div>
       <div class="exampleCard">
         <h3>!area:cone</h3>
-        <p>Will look for spells that require one to three actions.</p>
+        <p>Will look for spells without a cone area type.</p>
+      </div>
+    </div>
+  </section>
+  <div class="separator"></div>
+  <section #Duration>
+    <div>
+      <h2>Duration</h2>
+      <p>
+        Use the keyword 'duration:' to look for spells that last for a certain duration. For the
+        value of the keyword encapsulate it as "10 minutes" since the search uses spaces as a
+        divider of filters.
+        <br /><br />
+
+        Duration searches work by matching exactly to the name and number of the duration. Use the
+        same keyword with an exclamation mark in front to look for spells that do not last that
+        duration.
+      </p>
+    </div>
+    <div class="exampleCardsContainer">
+      <div class="exampleCard">
+        <h3>duration:"10 minutes"</h3>
+        <p>Will look for spells that have a 10 minute duration.</p>
+      </div>
+      <div class="exampleCard">
+        <h3>!duration:"1 round"</h3>
+        <p>Will look for spells that don't have a 1 round duration.</p>
       </div>
     </div>
   </section>
@@ -227,12 +295,8 @@
     <div>
       <h2>Is Sustained</h2>
       <p>
-        You can look up spells by the area of effect by using the area: keyword. For this keyword,
-        the trait will have to be entirely in lowercase. <br /><br />
-
-        Area searches work by matching the literal name of the area type, except you can also use
-        the same keyword with an exclamation mark in front of the keyword to look for spells that do
-        not have that area of effect type.
+        Use the keyword 'sustained:' to look for spells can be either sustained or not. For this
+        keyword the argument will have to be either 'true' or 'false', in lowercase.
       </p>
     </div>
     <div class="exampleCardsContainer">
@@ -243,6 +307,31 @@
       <div class="exampleCard">
         <h3>sustained:false</h3>
         <p>Will look for spells that can't be sustained.</p>
+      </div>
+    </div>
+  </section>
+  <div class="separator"></div>
+  <section #Target>
+    <div>
+      <h2>Target</h2>
+      <p>
+        Use the keyword 'target:' to look for spells that have a certain target. For the value of
+        the keyword encapsulate it as "1 creature" since the search uses spaces as a divider of
+        filters.
+        <br /><br />
+
+        Target searches work by matching exactly to the name and number of the target. Use the same
+        keyword with an exclamation mark in front to look for spells that do not have that target.
+      </p>
+    </div>
+    <div class="exampleCardsContainer">
+      <div class="exampleCard">
+        <h3>target:"1 creature"</h3>
+        <p>Will look for spells that target a creature.</p>
+      </div>
+      <div class="exampleCard">
+        <h3>!target:"1 object"</h3>
+        <p>Will look for spells that target an object.</p>
       </div>
     </div>
   </section>
@@ -272,6 +361,14 @@
     <div class="exampleCard">
       <h3>t:cantrip save:will</h3>
       <p>Mhmmm... This looks... kind of empty?</p>
+    </div>
+    <div class="exampleCard">
+      <h3>>lvl:6 sustained:true</h3>
+      <p>Cackle Cackle Cackle!</p>
+    </div>
+    <div class="exampleCard">
+      <h3>duration:"10 minutes" trad:divine range:touch</h3>
+      <p>So many buffs!</p>
     </div>
   </section>
   <div class="separator"></div>
