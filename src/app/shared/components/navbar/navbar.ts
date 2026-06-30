@@ -13,8 +13,8 @@ export class Navbar {
   searchEvent = output<string>();
   isFocus = false;
   dataService: PersonalSpellData = inject(PersonalSpellData);
-  favFilter = signal(false);
-  prepFilter = signal(false);
+  public favFilter = signal(false);
+  public prepFilter = signal(false);
 
   onEnter(search = '') {
     if (this.isFocus) this.searchEvent.emit(search);

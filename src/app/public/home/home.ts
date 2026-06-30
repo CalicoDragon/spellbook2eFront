@@ -1,11 +1,11 @@
-import { Component, inject, signal, Signal } from '@angular/core';
+import { Component, computed, inject, signal, Signal, viewChild } from '@angular/core';
 import { catchError, map, Observable, of, startWith, Subject, switchMap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 import { Navbar } from '../../shared/components/navbar/navbar';
 import { SpellCard } from '../../shared/components/spell-card/spell-card';
 import { Api } from '../../shared/services/api';
-import { SpellsRequest } from '../../shared/models/spell-model';
+import { Spell, SpellsRequest } from '../../shared/models/spell-model';
 import { Paginator } from '../../shared/components/paginator/paginator';
 import { PersonalSpellData } from '../../shared/services/personal-spell-data';
 
@@ -29,7 +29,19 @@ export class Home {
       );
     }),
   );
-  protected readonly spells: Signal<SpellsRequest | undefined> = toSignal(this.spells$); // Marked as possible undefined as before doing a query it will be undefined
+  private readonly spells: Signal<SpellsRequest | undefined> = toSignal(this.spells$); // Marked as possible undefined as before doing a query it will be undefined
+  protected readonly filteredSpells = computed(() => {
+    const spells = this.spells();
+
+    if (!spells || spells.loadingState !== 'success') {
+      return spells;
+    }
+
+    return {
+      ...spells,
+      spells: spells.spells.filter(this.favPrepFilter),
+    };
+  });
 
   protected receiverSearch(query: string): void {
     this.searchTriggered$.next(query);
@@ -45,5 +57,19 @@ export class Home {
   }
 
   // fav prep filters
-  protected readonly personalDataService = inject(PersonalSpellData);
+  private readonly personalDataService = inject(PersonalSpellData);
+  private readonly navbar = viewChild(Navbar);
+  private readonly favPrepFilter = (spell: Spell) => {
+    const isFavButton = this.navbar()?.favFilter();
+    const isPrepButton = this.navbar()?.prepFilter();
+    const isFav = this.personalDataService.isSpellFavorited(spell);
+    const isPrep = this.personalDataService.isSpellPrepared(spell);
+
+    return (
+      (!isFavButton && !isPrepButton) ||
+      (isFavButton && isPrepButton && isFav && isPrep) ||
+      (isFavButton && !isPrepButton && isFav) ||
+      (!isFavButton && isPrepButton && isPrep)
+    );
+  };
 }

@@ -1,5 +1,5 @@
 <app-navbar #Navbar (searchEvent)="receiverSearch($event)" />
-@let spellRequest = spells();
+@let spellRequest = filteredSpells();
 @if (spellRequest) {
   @switch (spellRequest.loadingState) {
     @case ('loading') {
@@ -20,14 +20,7 @@
           @for (spell of spellRequest.spells; track spell; let i = $index) {
             <!-- Only print current page -->
             @if (i >= page() * 50 - 50 && i <= Math.min(page() * 50, spellRequest.spells.length)) {
-              <!-- Fav/Prep Filter -->
-              @if (
-                (Navbar.favFilter() && !personalDataService.isSpellFavorited(spell)) ||
-                (Navbar.prepFilter() && !personalDataService.isSpellPrepared(spell))
-              ) {
-              } @else {
-                <app-spell-card [spell]="spell" />
-              }
+              <app-spell-card [spell]="spell" />
             }
           } @empty {
             <p>No spells found with your search</p>

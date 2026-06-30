@@ -32,10 +32,9 @@
           }
         </h2>
         <h2>
-          @if (spell().system.range && spell().system.range.value != '') {
+          @if (spell().system.range && spell().system.range.value !== '') {
             <strong>Range</strong> {{ spell().system.range.value }}
           }
-
           @if (spell().system.area) {
             <strong>Area</strong> {{ spell().system.area.value }}-foot
             {{ spell().system.area.type }}
