@@ -22,7 +22,7 @@
         /></svg
       >Previous
     </button>
-    <button (click)="nextPage()" class="w-25 max-lg:w-30" [disabled]="currPage() === maxPage()">
+    <button (click)="nextPage()" class="w-25 max-lg:w-30" [disabled]="currPage() >= maxPage()">
       Next<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24">
         <path
           fill="currentColor"
@@ -30,7 +30,7 @@
         ></path>
       </svg>
     </button>
-    <button (click)="lastPage()" [disabled]="currPage() === maxPage()">
+    <button (click)="lastPage()" [disabled]="currPage() >= maxPage()">
       <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24">
         <path
           fill="currentColor"
