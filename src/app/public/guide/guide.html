@@ -14,6 +14,7 @@
   <div class="index">
     <button (click)="scrollTo(Introduction)" type="button">Introduction</button>
     <button (click)="scrollTo(Name)" type="button">Name</button>
+    <button (click)="scrollTo(Description)" type="button">Descriptions</button>
     <button (click)="scrollTo(Traits)" type="button">Traits</button>
     <button (click)="scrollTo(Tradition)" type="button">Tradition</button>
     <button (click)="scrollTo(Rank)" type="button">Rank</button>
@@ -79,6 +80,28 @@
       <div class="exampleCard">
         <h3>ac sp</h3>
         <p>No need for uppercase letters or writing the name: keyword!</p>
+      </div>
+    </div>
+  </section>
+  <div class="separator"></div>
+  <section #Description>
+    <div>
+      <h2>Descriptions</h2>
+      <p>
+        Look for spells with a certain description by using the 'description:' or 'desc:' keyword
+        <br /><br />
+        Description searches are not case sensitive, and they also allow for partial searches.
+      </p>
+    </div>
+
+    <div class="exampleCardsContainer">
+      <div class="exampleCard">
+        <h3>description:stunned</h3>
+        <p>Will look for spells which description include "stunned"</p>
+      </div>
+      <div class="exampleCard">
+        <h3>desc:"hidden mine"</h3>
+        <p>Will look for spells which description include "hidden mine"</p>
       </div>
     </div>
   </section>
