@@ -32,23 +32,32 @@
           }
         </h2>
         <h2>
-          @if (spell().system.range && spell().system.range.value !== '') {
+          @if (spell().system.range) {
             <strong>Range</strong> {{ spell().system.range.value }}
           }
           @if (spell().system.area) {
             <strong>Area</strong> {{ spell().system.area.value }}-foot
             {{ spell().system.area.type }}
           }
+          @if (spell().system.target) {
+            <strong>Targets </strong>
+            {{ spell().system.target.value }}
+          }
         </h2>
-        @if (spell().system.defense) {
-          <h2>
-            <strong>Saving Throw </strong>
+
+        <h2>
+          @if (spell().system.defense) {
+            <strong>Defense </strong>
             @if (spell().system.defense.save.basic) {
               basic
             }
             {{ spell().system.defense.save.statistic }}
-          </h2>
-        }
+          }
+          @if (spell().system.duration) {
+            <strong>Duration </strong>
+            {{ spell().system.duration.value }}
+          }
+        </h2>
 
         <hr />
         <div class="descriptionContainer" [innerHTML]="spell().system.description.value"></div>
